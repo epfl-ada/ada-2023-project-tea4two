@@ -1,7 +1,4 @@
-# ada-2023-project-tea4two
-ada-2023-project-tea4two created by GitHub Classroom
-
-##  Legacy of Earth civilization based on a movie dataset.
+#  Legacy of Earth civilization based on a movie dataset.
 
 ## Abstract
 
