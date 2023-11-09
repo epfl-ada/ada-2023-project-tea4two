@@ -2,10 +2,10 @@
 
 ## Abstract
 
-As a first step, we want to analyze the database to reboot the average human being. Then, we want to use the movies to produce a graph of relationships between countries in the world.
-Then we will correlate that to the actual. We also want to study the realism/representativity of a subpool of movies contained in the dataset, by elaborating a metrics system that evaluates how the pool fits the human society.
+What if aliens discovered Earth long after we disappeared, and tried to guess what our civilization looks like thanks to the only thing that survived : movies ?
+As a first step, we want to analyze the database to reboot the average human being. Then, use movie synopses to produce a graph of relationships between countries in the world, and finally correlate these assumptions to the actual. 
 Also, we are interested in investigating possible correlations or causal links between the names of the actors and the names of the population.
-Eventually, we wonder what types of data would be most useful to send to space for other civilizations to understand human society.
+We finally want to study the realism/representativity of a subpool of movies contained in the dataset, by elaborating a metrics system that evaluates how the pool fits the human society. Eventually, we wonder what types of data would be most useful to pass on as a legacy for other civilizations, so they can understand human society.
 
 ## Related Research Questions
 
