@@ -1,35 +1,78 @@
-#  Legacy of Earth civilization based on a movie dataset.
+This README describes data in the CMU Movie Summary Corpus, a collection of 42,306 movie plot summaries and metadata at both the movie level (including box office revenues, genre and date of release) and character level (including gender and estimated age).  This data supports work in the following paper:
 
-## Abstract
+David Bamman, Brendan O'Connor and Noah Smith, "Learning Latent Personas of Film Characters," in: Proceedings of the Annual Meeting of the Association for Computational Linguistics (ACL 2013), Sofia, Bulgaria, August 2013.
 
-What if aliens discovered Earth long after we disappeared, and tried to guess what our civilization looks like thanks to the only thing that survived : movies ?
-As a first step, we want to analyze the database to reboot the average human being. Then, use movie synopses to produce a graph of relationships between countries in the world, and finally correlate these assumptions to the actual. 
-Also, we are interested in investigating possible correlations or causal links between the names of the actors and the names of the population.
-We finally want to study the realism/representativity of a subpool of movies contained in the dataset, by elaborating a metrics system that evaluates how the pool fits the human society. Eventually, we wonder what types of data would be most useful to pass on as a legacy for other civilizations, so they can understand human society.
+All data is released under a Creative Commons Attribution-ShareAlike License. For questions or comments, please contact David Bamman (dbamman@cs.cmu.edu).
 
-## Related Research Questions
+###
+#
+# DATA
+#
+###
 
-- What should the typical human look like, if the only information we had about them was this dataset ?
-- Is there a correlation between babies’ names distribution and films ? If yes, is it possible to determine if th
-- Can we infer the main relations between countries by analyzing synopses, and draw a weighted map of countries ?
-- Can we elaborate a metrics system that would rate the likelihood of pools of movies on arbitrary criteria about the Earth population, cities, countries, etc ?
+1. plot_summaries.txt.gz [29 M] 
+
+Plot summaries of 42,306 movies extracted from the November 2, 2012 dump of English-language Wikipedia.  Each line contains the Wikipedia movie ID (which indexes into movie.metadata.tsv) followed by the summary.
 
 
-## Complementary datasets
+2. corenlp_plot_summaries.tar.gz [628 M, separate download]
 
-Names dataset: here. The idea is to show if a correlation does exist between famous actor/character and baby names. 7Mb database.
+The plot summaries from above, run through the Stanford CoreNLP pipeline (tagging, parsing, NER and coref). Each filename begins with the Wikipedia movie ID (which indexes into movie.metadata.tsv).
 
-## Methods
 
-Description from aliens point of view, and estimation of errors based on actual values: 
-TASK_1: robot portrait vs reality (ethnicity, occupation, size): means, distributions (occupation, age of the actors at the movie release)
-TASK_2: influence of characters/actor names on baby names, 
-TASK_3: countries relationships, 
-TASK_4: metric that describes the distance of a pool of movies from reality ().
+###
+#
+# METADATA
+#
+###
 
-## Proposed timeline
+3. movie.metadata.tsv.gz [3.4 M]
 
-## Organization within the team
 
-## Questions for TAs (optional)
+Metadata for 81,741 movies, extracted from the Noverber 4, 2012 dump of Freebase.  Tab-separated; columns:
 
+1. Wikipedia movie ID
+2. Freebase movie ID
+3. Movie name
+4. Movie release date
+5. Movie box office revenue
+6. Movie runtime
+7. Movie languages (Freebase ID:name tuples)
+8. Movie countries (Freebase ID:name tuples)
+9. Movie genres (Freebase ID:name tuples)
+
+
+
+4. character.metadata.tsv.gz [14 M]
+
+Metadata for 450,669 characters aligned to the movies above, extracted from the Noverber 4, 2012 dump of Freebase.  Tab-separated; columns:
+
+1. Wikipedia movie ID
+2. Freebase movie ID
+3. Movie release date
+4. Character name
+5. Actor date of birth
+6. Actor gender
+7. Actor height (in meters)
+8. Actor ethnicity (Freebase ID)
+9. Actor name
+10. Actor age at movie release
+11. Freebase character/actor map ID
+12. Freebase character ID
+13. Freebase actor ID
+
+
+##
+#
+# TEST DATA
+#
+##
+
+tvtropes.clusters.txt
+
+72 character types drawn from tvtropes.com, along with 501 instances of those types.  The ID field indexes into the Freebase character/actor map ID in character.metadata.tsv.
+
+name.clusters.txt
+
+
+970 unique character names used in at least two different movies, along with 2,666 instances of those types.  The ID field indexes into the Freebase character/actor map ID in character.metadata.tsv.
