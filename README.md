@@ -12,9 +12,13 @@ This eventually enables us to wonder what data would be most useful to leave as 
 ## RESEARCH QUESTIONS
 
 •	What should the typical human look like, if the only information we had about them was this dataset?
+
 •	What does the information on names obtained by the aliens say about our society? Is there a correlation between babies’ names and actors’ names in films? If yes, is it possible to determine whether one of them causes the other?
+
 •	Can we infer the main relations between countries by analysing synopses, and draw a weighted map of countries with respect to how strongly they interact with each other?
+
 •	Can we elaborate a metric system that would rate the likelihood/representativity of pools of movies on different criteria about the Earth population? 
+
 •	Can we spot biases linked to the fact that most movies are either produced or occur in the USA?
 
 
