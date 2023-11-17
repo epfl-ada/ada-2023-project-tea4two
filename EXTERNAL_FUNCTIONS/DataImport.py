@@ -6,7 +6,6 @@ def OpenMainMovieDatasetDF(PATH):
     '''
     This function opens the dataframes stored in the file with location PATH
     '''
-    
     character_file = os.path.join(PATH, 'character.metadata.tsv')
     movie_file = os.path.join(PATH, 'movie.metadata.tsv')
     name_file = os.path.join(PATH, 'name.clusters.txt')
@@ -42,11 +41,14 @@ def OpenMainMovieDatasetDF(PATH):
     return characterDF, movieDF, nameDF, plotDF, tvtropDF
 
 
-def FillMissingValues(target_df, source_df, target_column, source_column):
+def FillMissingValues(target_df, source_df, target_column, source_column, id):
     # Calculate percentage of missing values before filling
     before_fill_percentage = target_df[target_column].isnull().mean() * 100
     
-    target_df[target_column] = target_df[target_column].fillna(source_df[source_column])
+    temporary = pd.merge(target_df,source_df,on = id, how='left',suffixes=('_target', '_source'))
+
+    # Replace the Nan of the target dataframe if a Value can be found for the same movie in the source dataframe
+    target_df[target_column] = target_df[target_column].fillna(temporary[source_column+'_source'])
 
     # Calculate percentage of missing values after filling
     after_fill_percentage = target_df[target_column].isnull().mean() * 100
@@ -55,8 +57,34 @@ def FillMissingValues(target_df, source_df, target_column, source_column):
     improvement_percentage = before_fill_percentage - after_fill_percentage
 
     # Print the results
-    print(f"Percentage of missing values before fill: {before_fill_percentage:.2f}%")
+    print(f"Percentage of missing values before fill : {before_fill_percentage:.2f}%")
     print(f"Percentage of missing values after fill: {after_fill_percentage:.2f}%")
     print(f"Percentage improvement: {improvement_percentage:.2f}%")
 
     return target_df
+
+
+def OpenBabyNameDf(PATH) :
+    '''
+    This function opens the dataframes stored in the file with location PATH
+    '''
+    
+    #for all file present in the folder
+    files = os.listdir(PATH)
+    baby_nameDF = pd.DataFrame()
+    
+    for file in files:
+        if file.endswith(".txt"):
+            name_file = os.path.join(PATH, file)
+            # name_col = ["Firstname","Sexe","Number"]
+            name_a_yearDF = pd.read_table(name_file, sep=",",index_col=False)
+            name_a_yearDF = name_a_yearDF.drop_duplicates()
+            name_a_yearDF = name_a_yearDF.drop(name_a_yearDF[name_a_yearDF["Firstname"]=="Firstname"].index)
+            #add a column for the year given in the filename
+            name_a_yearDF["Year"] = file.split(".")[0].replace("yob","")
+            name_a_yearDF.to_csv(os.path.join(PATH, file),index=False)
+            
+            # Concatenate the new data with the existing data
+            baby_nameDF = pd.concat([baby_nameDF, name_a_yearDF])
+        
+    return baby_nameDF

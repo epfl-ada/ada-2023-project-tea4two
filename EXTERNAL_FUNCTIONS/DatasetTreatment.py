@@ -28,3 +28,12 @@ def MovieDF_Treatment(MovieDF) :
     df['Movie genres'] = df['Movie genres'].apply(ast.literal_eval)
     df[['Freebase genre', 'Movie genres']] = df['Movie genres'].apply(split_dict)
     return df
+
+def extract_top_firstname(name, valid_firstnames, name_occurrences_dict):
+    if isinstance(name, str):
+        names = name.split()
+        firstnames = [n for n in names if n in valid_firstnames]
+        if firstnames:
+            top_firstname = max(firstnames, key=lambda n: name_occurrences_dict.get(n, 0))
+            return top_firstname
+    return None
