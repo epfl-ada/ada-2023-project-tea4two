@@ -1,6 +1,4 @@
-## TITLE
-
-Legacy of Earth civilization based on a movie dataset.
+## Legacy of Earth civilization based on a movie dataset.
 
 ## ABSTRACT
 
