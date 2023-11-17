@@ -40,6 +40,30 @@ def OpenMainMovieDatasetDF(PATH):
 
     return characterDF, movieDF, nameDF, plotDF, tvtropDF
 
+def OpenBabyNameDf(PATH):
+    '''
+    This function opens the dataframes stored in the file with location PATH
+    '''
+    
+    #for all file present in the folder
+    files = os.listdir(PATH)
+    baby_nameDF = pd.DataFrame()
+    
+    for file in files:
+        if file.endswith(".txt"):
+            name_file = os.path.join(PATH, file)
+            # name_col = ["Firstname","Sexe","Number"]
+            name_a_yearDF = pd.read_table(name_file, sep=",",index_col=False)
+            name_a_yearDF = name_a_yearDF.drop_duplicates()
+            name_a_yearDF = name_a_yearDF.drop(name_a_yearDF[name_a_yearDF["Firstname"]=="Firstname"].index)
+            #add a column for the year given in the filename
+            name_a_yearDF["Year"] = file.split(".")[0].replace("yob","")
+            name_a_yearDF.to_csv(os.path.join(PATH, file),index=False)
+            
+            # Concatenate the new data with the existing data
+            baby_nameDF = pd.concat([baby_nameDF, name_a_yearDF])
+        
+    return baby_nameDF
 
 def FillMissingValues(target_df, source_df, target_column, source_column, id):
     # Calculate percentage of missing values before filling
