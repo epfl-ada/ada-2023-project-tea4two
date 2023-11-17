@@ -35,6 +35,7 @@ For task 1 (robot portrait), we mostly analyse the means of features (if continu
 For task 2 (a metric system that rates pools of movies): we have defined a metric for each of our current criteria (height, age, gender, ethnicity), and we have the reference data for the USA, to which we can compare pools of movies.
 For task 3 (influence of actors’ names on babies’ names): we will first investigate simple correlations. We consider only the 100 most famous movies (ranked with their box-office revenue). Have some names appeared after these movies? We can think of Leia which did not exist before the Star Wars first trilogy, but was given to a few thousand babies afterwards. Are there only a few highly noticeable examples, or can we also observe little increases for already popular names? To evaluate the real impact and confirm or infirm our assumptions, we should use statistical tools such as tests and p-values.
 For task 4 (building a graph of the relationship of countries): We plan to analyse the synopses (strings) to look for synopses that mention several countries and value the interactions between them (any type they be). Assuming high interaction go on with geographical proximity (historically, countries were closely related to their neighbours), we can then produce a theoretical map of countries. 
+![Uploading 400008711_1028203755172859_8881607516467571447_n.png…]()
 
 
 ## TIMELINE AND ORGANIZATION WITHIN THE TEAM
