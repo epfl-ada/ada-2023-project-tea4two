@@ -1,22 +1,7 @@
-from kaleido.scopes.plotly import PlotlyScope
-from IPython.display import Markdown
+OUTPUT_FOLDER_HTML = './IMAGES/html/'
+OUTPUT_FOLDER_WEBSITE_HTML = '../jeanlefort.github.io/img/html/'
+def export_plots(fig, name):
+    fig.write_html(OUTPUT_FOLDER_HTML + name + ".html")
+    fig.write_html(OUTPUT_FOLDER_WEBSITE_HTML + name + ".html")
 
-# GLOBAL VARIABLE: display_option = "static" or "dynamic"
-DISPLAY_OPTION = "static" #for github mainly
-#DISPLAY_OPTION = "dynamic" #for interactive display
-
-def save_or_show_figure(fig, filename, format="svg", display_option=DISPLAY_OPTION):
-    scope = PlotlyScope(
-        plotlyjs="https://cdn.plot.ly/plotly-latest.min.js",
-    )
-
-    if format == "svg":
-        with open(filename, "wb") as f:
-            f.write(scope.transform(fig, format="svg"))
-    else:
-        fig.write_image(filename)
-
-    if display_option == "static":
-        return Markdown("""![{filename}]({filename})""".format(filename=filename))
-    else:
-        return fig.show()
+    return fig.show()
