@@ -1,16 +1,16 @@
 ## Legacy of Earth civilization based on a movie dataset.
 
-What would aliens think of the Earth if all they had was the CMU dataset?
+How would aliens figure Earth if they had only the CMU dataset?
 
 ## Data Story :book:
 
-🌍 [tea_for_two website link](https://jeanlefort.github.io/)
+🌍 You can find our alien Data story [here](https://jeanlefort.github.io/).
 
 ## ABSTRACT
 
 In the dire year of 2023, as the impending collapse of our Earth civilization loomed large on the horizon, a group of desperate scientists raced against time to launch a last-ditch effort to preserve the essence of humanity. The chosen vessel for our legacy was a satellite destined to journey far beyond the confines of our troubled planet. In the eleventh hour, the scientist entrusted with the monumental task of uploading the data onto the satellite found themselves armed with an unexpected but strangely fitting resource—the CMU Movie Summary Corpus, a rich collection of narratives encapsulating the essence of our collective imagination. The satellite, now carrying the weight of our cultural legacy, soared into the vast unknown of space. Meanwhile, on Earth, the remnants of our civilization could only hope that these celluloid chronicles would serve as a cryptic Rosetta Stone for any extraterrestrial intelligences that might one day stumble upon this cosmic time capsule.
 
-10000 years later and far away from our decaying home, the alien discoverers puzzled over the enigmatic treasure trove they had stumbled upon. Their advanced intellects delved into the intricacies of our stories, attempting to decipher the nuances of a civilization long gone. Through the lens of our cinematic legacy, these alien archaeologists sought to unravel the mysteries of what is a human. An alien student class decide to present their findings to their teacher about what they have learned from the CMU Movie Summary Corpus.
+Ten thousand years later and far away from our decaying home, alien discoverers puzzled over the enigmatic treasure trove they had stumbled upon. Their advanced intellects delved into the intricacies of our stories, attempting to decipher the nuances of a civilization long gone. Through the lens of our cinematic legacy, these alien archaeologists sought to unravel the mysteries of what is human. An alien student class decided to present their findings to their teacher about what they have learned from the CMU Movie Summary Corpus.
 
 
 ## RESEARCH QUESTIONS
@@ -43,7 +43,7 @@ We also use additional data about the US population, as regards distributions of
 ![Methods to analyze the data](./pipeline.png)
 
 * For task 1 (**robot portrait**):
-we mostly analyse the means of features (if continuous, like height) or the most represented ones (if categorical, like occupations). This also serves as an exploration of the dataset.
+We mostly analyze the means of features (if continuous, like height) or the most represented ones (if categorical, like occupations). This also serves as an exploration of the dataset, and to find what kind of movies humans like. We performed some t-tests to reject hypotheses, pair matching to reduce the influence of cofactors, and linear regression to demonstrate correlations (not causations).
 
 * For task 2 (**metric system that rates pools of movies**): we define a metric for each of our criteria (height, age, gender, ethnicity), which we compare to the reference data for the USA. We can then compare pools of movies over these criteria. We optimize the number of movies per pool (*N_opt*), and then find the optimal pool of *N_opt* movies.
 We then use machine learning tools to analyse the impact of movies'genres on the scores, and last we end-up with an evaluation of our metric's robustness.
@@ -59,8 +59,8 @@ We separated the whole team into subgroups to focus on our different tasks.
 Within each subgroup, we have defined precise timelines to reach our respective objectives in time for Milestones 2 and 3. However, we keep discussing all together on the big picture to maintain a global consistency within our work. 
 
 **Task 1:** 
-- Milestone 2: Define the characteristics of interest for the robot portrait. Extract the information about these features, at a certain time and place.
-- Milestone 3: ???
+- Milestone 2: Define the characteristics of interest for the robot portrait. Extract information about these features at a certain time and place.
+- Milestone 3: Conduct t-tests on actresses' representation as doctors, explore people's movie preferences, and devise strategies to mitigate the influence of time (resulting from inflation and the development of the movie industry) to obtain accurate results regarding box-office revenues. Extract information from character names, including military ranks and doctor positions.
 
 **Task 2:**
 - Milestone 2: Selection of 4 test criteria: age, gender, height, ethnicity & Definition of the metric for each criterion & Evaluation of a few movies with this process
@@ -81,7 +81,7 @@ Within each subgroup, we have defined precise timelines to reach our respective 
 
 ## Team Organization:
 * Paul : Influence of names, country map, website creation
-* Hugo : robot-portrait and dataset exploration
-* Jean : robot portrait, website creation, and datastory
+* Hugo : robot portrait, dataset exploration
+* Jean : robot portrait, website creation, datastory
 * Pierre-Marie : Definition of the metric, optimization of scores functions, robustness/sensitivity analysis
 * Guillaume : Optimization of N_opt, correlation between subscores, impact of genres on scores
