@@ -1,21 +1,23 @@
-## TITLE
+## Legacy of Earth civilization based on a movie dataset.
 
-Legacy of Earth civilization based on a movie dataset.
+What would aliens think of the Earth if all they had was the CMU dataset?
+
+## Data Story :book:
+
+🌍 [tea_for_two website link](https://jeanlefort.github.io/)
 
 ## ABSTRACT
 
-What if aliens tried to guess what our civilization/society looked like long after we disappeared, thanks to the only document they have access to: a dataset of movies?
-First, we see things from their perspective and draw up a robot-portrait of the average person on Earth/. Having constructed an image in the manner of extraterrestrial historians, we ask ourselves to what extent this image is realistic and representative of current society
-We continue by investigating possible correlations or causal links between the names of the actors and of the population. What is the true nature of data collected by the aliens, are they only seeing the description of our society or something deeper than that ? 
-Last, we would be interested in producing graphs of relationships between countries in the world, given only the synopses of the movies.
-This eventually enables us to wonder what data would be most useful to leave as a legacy for other civilizations to understand human society.
+In the dire year of 2023, as the impending collapse of our Earth civilization loomed large on the horizon, a group of desperate scientists raced against time to launch a last-ditch effort to preserve the essence of humanity. The chosen vessel for our legacy was a satellite destined to journey far beyond the confines of our troubled planet. In the eleventh hour, the scientist entrusted with the monumental task of uploading the data onto the satellite found themselves armed with an unexpected but strangely fitting resource—the CMU Movie Summary Corpus, a rich collection of narratives encapsulating the essence of our collective imagination. The satellite, now carrying the weight of our cultural legacy, soared into the vast unknown of space. Meanwhile, on Earth, the remnants of our civilization could only hope that these celluloid chronicles would serve as a cryptic Rosetta Stone for any extraterrestrial intelligences that might one day stumble upon this cosmic time capsule.
+
+10000 years later and far away from our decaying home, the alien discoverers puzzled over the enigmatic treasure trove they had stumbled upon. Their advanced intellects delved into the intricacies of our stories, attempting to decipher the nuances of a civilization long gone. Through the lens of our cinematic legacy, these alien archaeologists sought to unravel the mysteries of what is a human. An alien student class decide to present their findings to their teacher about what they have learned from the CMU Movie Summary Corpus.
 
 
 ## RESEARCH QUESTIONS
 
 •	What should the typical human look like, if the only information we had about them was this dataset?
 •	What does the information on names obtained by the aliens say about our society? Is there a correlation between babies’ names and actors’ names in films? If yes, is it possible to determine whether one of them causes the other?
-•	Can we infer the main relations between countries by analysing synopses, and draw a weighted map of countries with respect to how strongly they interact with each other?
+•	Can we infer the main relations between countries by analysing synopses, and draw a graph of countries with respect to how strongly they interact with each other?
 •	Can we elaborate a metric system that would rate the likelihood/representativity of pools of movies on different criteria about the Earth population? 
 •	Can we spot biases linked to the fact that most movies are either produced or occur in the USA?
 
@@ -29,36 +31,57 @@ We also use additional data about the US population, as regards distributions of
 
 ## METHODS
 
+### Main External libraries
+* plotly
+* Networkx
+* scipy.stats
+* seaborn
+* wordcloud
+* statsmodel
+* sklearn
+
 ![Methods to analyze the data](./pipeline.png)
 
-For task 1 (robot portrait), we mostly analyse the means of features (if continuous, like height) or the most represented ones (if categorical, like occupations).
-For task 2 (a metric system that rates pools of movies): we have defined a metric for each of our current criteria (height, age, gender, ethnicity), and we have the reference data for the USA, to which we can compare pools of movies.
-For task 3 (influence of actors’ names on babies’ names): we will first investigate simple correlations. We consider only the 100 most famous movies (ranked with their box-office revenue). Have some names appeared after these movies? We can think of Leia which did not exist before the Star Wars first trilogy, but was given to a few thousands babies afterwards. Are there only a few highly noticeable examples, or can we also observe little increases for already popular names? To evaluate the real impact and confirm or infirm our assumptions, we should use statistical tools such as tests and p-values.
-For task 4 (building a graph of relationship of countries): We plan to analyse the synopses (strings) to look for synopses that mention several countries and value the interactions between them (any type they be). Assuming high interaction go on with geographical proximity (historically, countries were closely related with their neighbours), we can then produce a theoretical map of countries. 
+* For task 1 (**robot portrait**):
+we mostly analyse the means of features (if continuous, like height) or the most represented ones (if categorical, like occupations). This also serves as an exploration of the dataset.
+
+* For task 2 (**metric system that rates pools of movies**): we define a metric for each of our criteria (height, age, gender, ethnicity), which we compare to the reference data for the USA. We can then compare pools of movies over these criteria. We optimize the number of movies per pool (*N_opt*), and then find the optimal pool of *N_opt* movies.
+We then use machine learning tools to analyse the impact of movies'genres on the scores, and last we end-up with an evaluation of our metric's robustness.
+
+* For task 3 (**influence of actors’ names on babies’ names**): we first investigate simple correlations. Have some names appeared after these movies? We can think of Leia which did not exist before the Star Wars first trilogy, but was given to a few thousands babies afterwards. Are there only a few highly noticeable examples, or can we also observe little increases for already popular names? To evaluate the real impact and confirm or infirm our assumptions, we should use statistical tools such as cross-correlations.
+
+* For task 4 (**building a graph of relationship of countries**): We analyse the synopses (which are strings) to look for synopses that mention several countries and value the interactions between them (any type they be). Assuming high interaction go on with geographical proximity (historically, countries were closely related with their neighbours), we can then produce a theoretical map of countries on Earth, that are seen as islands in an ocean.
 
 
 ## TIMELINE AND ORGANIZATION WITHIN THE TEAM
 
 We separated the whole team into subgroups to focus on our different tasks. 
-Within each subgroup, we have defined precise timelines to reach our respective objectives in time for Milestones 2 and 3. However, we keep discussing all together on the big picture to maintain a global consistency within our work. Task 4 has not been tackled yet for milestone 2, since it is more complex and may benefit from the ADA lesson about handling text data.
+Within each subgroup, we have defined precise timelines to reach our respective objectives in time for Milestones 2 and 3. However, we keep discussing all together on the big picture to maintain a global consistency within our work. 
 
-Task 1: 
+**Task 1:** 
 - Milestone 2: Define the characteristics of interest for the robot portrait. Extract the information about these features, at a certain time and place.
-- Milestone 3: Elaborate an evolving robot portrait that changes with years and regions.
+- Milestone 3: ???
 
-Task 2: 
+**Task 2:**
 - Milestone 2: Selection of 4 test criteria: age, gender, height, ethnicity & Definition of the metric for each criterion & Evaluation of a few movies with this process
-- Milestone 3: Final selection of representative criteria & Evaluation of pools of movies & Understanding of reasons why types/genres of movies rank higher or lower & Finding the ideal subset of the CMU dataset?
+- Milestone 3: Evaluation of pools of movies 
+               Understanding of reasons why types/genres of movies rank higher or lower
+               Finding the ideal subset of the CMU dataset
+               Assessment of the impact of scores on the prediction of scores thanks to linear regression and random forests
+               Evaluation of the robustness of the metric
 
-Task 3: 
+**Task 3:**
 - Milestone 2: For 400 names given in the USA, study of the frequency of the names given in the babies population and the actors population. Plot of visible correlations: which come first?
 - Milestone 3: Refinement of this study by region and years groups. Also focus on common names, for which the analysis might be tenuous, whereas original names like Leia are much less easy to study. Also, use of precise assumptions and statistical tools answer the question of causal links: did some movies likely result in increasing number of babies named 'XX'?
 
-Task 4: 
+**Task 4:**
 - Milestone 2: No analysis performed yet.
 - Milestone 3: Extraction of the strings contained in the synopses to establish frequency relationships between two or more countries.
 
 
-## Questions for TAs (optional)
-
-
+## Team Organization:
+* Paul : Influence of names, country map, website creation
+* Hugo : robot-portrait and dataset exploration
+* Jean : robot portrait, website creation, and datastory
+* Pierre-Marie : Definition of the metric, optimization of scores functions, robustness/sensitivity analysis
+* Guillaume : Optimization of N_opt, correlation between subscores, impact of genres on scores
