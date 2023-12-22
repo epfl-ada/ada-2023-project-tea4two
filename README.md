@@ -17,7 +17,7 @@ Ten thousand years later and far away from our decaying home, alien discoverers 
 
 •	What should the typical human look like, if the only information we had about them was this dataset?
 •	What does the information on names obtained by the aliens say about our society? Is there a correlation between babies’ names and actors’ names in films? If yes, is it possible to determine whether one of them causes the other?
-•	Can we infer the main relations between countries by analysing synopses, and draw a weighted map of countries with respect to how strongly they interact with each other?
+•	Can we infer the main relations between countries by analysing synopses, and draw a graph of countries with respect to how strongly they interact with each other?
 •	Can we elaborate a metric system that would rate the likelihood/representativity of pools of movies on different criteria about the Earth population? 
 •	Can we spot biases linked to the fact that most movies are either produced or occur in the USA?
 
@@ -30,6 +30,15 @@ As our goal is to extract the most of the main dataset so that with a dataset ex
 We also use additional data about the US population, as regards distributions of ages, ethnicities, heights, genders. Such data is quite light and does not require huge dataset. 
 
 ## METHODS
+
+### Main External libraries
+* plotly
+* Networkx
+* scipy.stats
+* seaborn
+* wordcloud
+* statsmodel
+* sklearn
 
 ![Methods to analyze the data](./pipeline.png)
 
@@ -47,21 +56,25 @@ We then use machine learning tools to analyse the impact of movies'genres on the
 ## TIMELINE AND ORGANIZATION WITHIN THE TEAM
 
 We separated the whole team into subgroups to focus on our different tasks. 
-Within each subgroup, we have defined precise timelines to reach our respective objectives in time for Milestones 2 and 3. However, we keep discussing all together on the big picture to maintain a global consistency within our work. Task 4 has not been tackled yet for milestone 2, since it is more complex and may benefit from the ADA lesson about handling text data.
+Within each subgroup, we have defined precise timelines to reach our respective objectives in time for Milestones 2 and 3. However, we keep discussing all together on the big picture to maintain a global consistency within our work. 
 
 **Task 1:** 
 - Milestone 2: Define the characteristics of interest for the robot portrait. Extract information about these features at a certain time and place.
 - Milestone 3: Conduct t-tests on actresses' representation as doctors, explore people's movie preferences, and devise strategies to mitigate the influence of time (resulting from inflation and the development of the movie industry) to obtain accurate results regarding box-office revenues. Extract information from character names, including military ranks and doctor positions.
 
-Task 2: 
+**Task 2:**
 - Milestone 2: Selection of 4 test criteria: age, gender, height, ethnicity & Definition of the metric for each criterion & Evaluation of a few movies with this process
-- Milestone 3: Final selection of representative criteria & Evaluation of pools of movies & Understanding of reasons why types/genres of movies rank higher or lower & Finding the ideal subset of the CMU dataset?
+- Milestone 3: Evaluation of pools of movies 
+               Understanding of reasons why types/genres of movies rank higher or lower
+               Finding the ideal subset of the CMU dataset
+               Assessment of the impact of scores on the prediction of scores thanks to linear regression and random forests
+               Evaluation of the robustness of the metric
 
-Task 3: 
+**Task 3:**
 - Milestone 2: For 400 names given in the USA, study of the frequency of the names given in the babies population and the actors population. Plot of visible correlations: which come first?
 - Milestone 3: Refinement of this study by region and years groups. Also focus on common names, for which the analysis might be tenuous, whereas original names like Leia are much less easy to study. Also, use of precise assumptions and statistical tools answer the question of causal links: did some movies likely result in increasing number of babies named 'XX'?
 
-Task 4: 
+**Task 4:**
 - Milestone 2: No analysis performed yet.
 - Milestone 3: Extraction of the strings contained in the synopses to establish frequency relationships between two or more countries.
 
