@@ -3,6 +3,10 @@ This file contains the main functions used to score pools of movies depending on
 age and height distribution.
 """
 
+####################################
+#####  Scoring functions   #########
+####################################
+
 
 def scoring_function(value, target, p, sigma):
     """ Scoring function.
@@ -257,7 +261,9 @@ function_dic={'par':parity_score,
 
 
 
-
+############################################################
+##  Functions to fid score distribution of numerous pools ##
+############################################################
 
 
 POOL_SIZE = 20
@@ -313,6 +319,12 @@ def scores_distribution(score_id, n_test=N_TEST, pool_size=POOL_SIZE,plot=True,r
     return scores_list
 
 
+
+###########################################################
+#######  Functions to find optimal pools of movies  #######
+###########################################################
+
+
 def improvement(initial_movies_id,old_score):
     """
     This function takes the pool with @initial_movies, with a score of @old_score,
@@ -342,6 +354,7 @@ def improvement(initial_movies_id,old_score):
     new_sc = old_score+diff_max
     return best_movies_id,
 
+
 def best_pool(initial_size=10,final_size=20):
     """
     Improving a random very good pool of @initial_size movies by applying the function 'improvement'
@@ -365,11 +378,13 @@ def best_pool(initial_size=10,final_size=20):
     return initial_movies_id
 
 
-
+#########################################
+#####  Function for genre study #########
+#########################################
 
 def most_common_movieIDents(lst, n=5):
     """
-    Returns the @n most numerous movie genres in the list,
+    Returns the @n most numerous movie genres in @list, as well as their multiplicities
     """
     counter = Counter(lst)
     return counter.most_common(n)
