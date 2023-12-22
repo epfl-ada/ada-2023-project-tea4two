@@ -378,7 +378,7 @@ def best_pool(df, ref, initial_size=10, final_size=20):
     print(f'The maximal score is {max_score}, corresponding to the following pool : {initial_movies_id}.')
     
     for i in range(final_size-initial_size):
-        initial_movies_id, max_score=improvement(df, initial_movies_id, max_score)
+        initial_movies_id, max_score=improvement(df, ref, initial_movies_id, max_score)
         print(f"Improvement {i+1} : adding movie {initial_movies_id[-1]} gives a new score of {max_score}.")
     return initial_movies_id
 
