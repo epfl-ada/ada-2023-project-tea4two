@@ -296,8 +296,10 @@ def scores_distribution(score_id, df, ref, n_test=N_TEST, pool_size=POOL_SIZE, p
     Plot the distribution of scores according to @score_function.
     Extract @n_test pools of @pool_size movies and assess the corresponding score.
     """
+    print()
     scores_list={'pool':[]}
     score_function = function_dic[score_id]
+    print(score_function)
     for i in range(n_test):
         if (i%10000==0 and i!=0):
             print("n_test = "+i)
