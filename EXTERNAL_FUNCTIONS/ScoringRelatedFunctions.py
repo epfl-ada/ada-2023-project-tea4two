@@ -42,7 +42,7 @@ def standardized_score(score, min_score=0, max_score=0):
 
 
 
-def parity_score(pool, ref=usa_ref['par'], p=3, sigma=20):
+def parity_score(pool, ref, p=3, sigma=20):
     
     """
     Return a value between 0 (if only one gender) and 1 (if parity is exactly the same as in @ref),
@@ -79,7 +79,7 @@ def diversity_score(pool):
 
 
 
-def age_score(pool, ref=usa_ref['age'], p=2.5, sigma=500):
+def age_score(pool, ref, p=2.5, sigma=500):
     """
     function to evaluate the difference between the age distribution of the actors in the movie
     and the real distribution, using the scoring_function with parameters @p and @sigma.
@@ -130,7 +130,7 @@ def age_score(pool, ref=usa_ref['age'], p=2.5, sigma=500):
 
 
 
-def rescued_age_score(pool, ref=usa_ref['age'], p=2.5, sigma=500,
+def rescued_age_score(pool, ref, p=2.5, sigma=500,
                       min_score=0.12, max_score=0.35):
     """
     Apply a standardization to age_score to center and widen the distribution's spread.
@@ -145,7 +145,7 @@ def rescued_age_score(pool, ref=usa_ref['age'], p=2.5, sigma=500,
 
 
 
-def height_score(pool, ref=usa_ref['hei'],p=3,sigma=50):
+def height_score(pool, ref,p=3,sigma=50):
     """
     Function to evaluate the difference between the age distribution of the actors in the movie
     and the real distribution.
@@ -198,7 +198,7 @@ def height_score(pool, ref=usa_ref['hei'],p=3,sigma=50):
 
 
 
-def rescued_height_score(pool, ref=usa_ref['hei'],p=3,sigma=50,
+def rescued_height_score(pool, ref,p=3, sigma=50,
                          min_score=0.5, max_score=0.9):
     """
     Apply a standardization to height_score to center and widen the distribution's spread.
@@ -223,7 +223,7 @@ hei_w = 1
 
 weights_dic={'par':par_w, 'div':div_w, 'age':age_w, 'hei':hei_w}
 
-def representativeness_score(pool, ref=usa_ref,weights=weights_dic):
+def representativeness_score(pool, ref, weights=weights_dic):
     """
     Weighting and aggregation of every single score to produce the final score of @pool, 
     between 0 (the movie clearly do not represent our civilization) and 100 (it perfectly
@@ -285,7 +285,7 @@ def random_movie_pool(film_pool_size=POOL_SIZE):
     return defined_movie_pool(movies_id)
 
 
-def scores_distribution(score_id, n_test=N_TEST, pool_size=POOL_SIZE,plot=True,ref=usa_ref):
+def scores_distribution(score_id, ref, n_test=N_TEST, pool_size=POOL_SIZE, plot=True):
     """
     Plot the distribution of scores according to @score_function.
     Extract @n_test pools of @pool_size movies and assess the corresponding score.
@@ -325,7 +325,7 @@ def scores_distribution(score_id, n_test=N_TEST, pool_size=POOL_SIZE,plot=True,r
 ###########################################################
 
 
-def improvement(initial_movies_id,old_score):
+def improvement(initial_movies_id, old_score):
     """
     This function takes the pool with @initial_movies, with a score of @old_score,
     screen for each movie in our dataset and find the movie that increase at most the score.
@@ -355,7 +355,7 @@ def improvement(initial_movies_id,old_score):
     return best_movies_id,
 
 
-def best_pool(initial_size=10,final_size=20):
+def best_pool(initial_size=10, final_size=20):
     """
     Improving a random very good pool of @initial_size movies by applying the function 'improvement'
     until the number of movies in the pool is @final_size.
