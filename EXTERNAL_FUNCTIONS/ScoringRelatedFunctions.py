@@ -279,7 +279,7 @@ def defined_movie_pool(movies_id, df):
     """
     Extract the actors of movies whose id is in @movies_id.
     """
-    pool = noNaN_characterDF[df['Wikipedia movie ID'].isin(movies_id)]
+    pool = df[df['Wikipedia movie ID'].isin(movies_id)]
     return pool
 
 
@@ -302,7 +302,10 @@ def scores_distribution(score_id, df, ref, n_test=N_TEST, pool_size=POOL_SIZE, p
         if (i%10000==0 and i!=0):
             print("n_test = "+i)
         P = random_movie_pool(pool_size, df)
-        dic = score_function(P)
+        if score_id=='tot':
+            dic=ref
+        else:
+            dic = score_function(P, ref[score_id])
         for key in dic:
             if key not in scores_list:
                 scores_list[key]=[]
