@@ -1,7 +1,13 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from math import isnan
+
 """
 This file contains the main functions used to score pools of movies depending on the parity, diversity, 
 age and height distribution.
 """
+
 
 ####################################
 #####  Scoring functions   #########
@@ -26,7 +32,7 @@ def scoring_function(value, target, p, sigma):
     x = 0.5+dist
     if (x<0 or x>1):
         return 0
-    return np.exp(-sigma*abs(2*x-1)**p)*np.cos(np.pi/2*(2*x-1))
+    return (np.exp(-sigma*np.abs(2*x-1)**p)*np.cos(np.pi/2*(2*x-1)))
 
 def standardized_score(score, min_score=0, max_score=0):
     """
@@ -59,7 +65,7 @@ def parity_score(pool, ref, p=3, sigma=20):
 
 
 
-def diversity_score(pool):
+def diversity_score(pool, ref=None):
     """
     Comute the number of ethnicities over the total number of actors.
     If >75%, the score returns 1.
@@ -145,7 +151,7 @@ def rescued_age_score(pool, ref, p=2.5, sigma=500,
 
 
 
-def height_score(pool, ref,p=3,sigma=50):
+def height_score(pool, ref, p=3, sigma=50):
     """
     Function to evaluate the difference between the age distribution of the actors in the movie
     and the real distribution.
@@ -198,7 +204,7 @@ def height_score(pool, ref,p=3,sigma=50):
 
 
 
-def rescued_height_score(pool, ref,p=3, sigma=50,
+def rescued_height_score(pool, ref, p=3, sigma=50,
                          min_score=0.5, max_score=0.9):
     """
     Apply a standardization to height_score to center and widen the distribution's spread.
