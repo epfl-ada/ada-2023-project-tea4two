@@ -81,7 +81,7 @@ Within each subgroup, we have defined precise timelines to reach our respective 
 
 ## Team Organization:
 * Paul : Influence of names, country map, website creation
-* Hugo : robot-portrait and dataset exploration
-* Jean : robot portrait, website creation, and datastory
+* Hugo : robot-portrait, dataset exploration
+* Jean : robot portrait, website creation, datastory
 * Pierre-Marie : Definition of the metric, optimization of scores functions, robustness/sensitivity analysis
 * Guillaume : Optimization of N_opt, correlation between subscores, impact of genres on scores
