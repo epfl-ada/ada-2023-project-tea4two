@@ -275,23 +275,23 @@ function_dic={'par':parity_score,
 POOL_SIZE = 20
 N_TEST = 1000
 
-def defined_movie_pool(movies_id):
+def defined_movie_pool(movies_id, df):
     """
     Extract the actors of movies whose id is in @movies_id.
     """
-    pool = noNaN_characterDF[noNaN_characterDF['Wikipedia movie ID'].isin(movies_id)]
+    pool = noNaN_characterDF[df['Wikipedia movie ID'].isin(movies_id)]
     return pool
 
-def random_movie_pool(film_pool_size=POOL_SIZE):
+
+def random_movie_pool(film_pool_size, df):
     """
     Extract the actors of @pool_size random movies.
     """
-    movies_id = np.random.choice(noNaN_characterDF['Wikipedia movie ID'].unique(),
+    movies_id = np.random.choice(df['Wikipedia movie ID'].unique(),
                                   size=film_pool_size, replace=False)
-    return defined_movie_pool(movies_id)
+    return defined_movie_pool(movies_id, df)
 
-
-def scores_distribution(score_id, ref, n_test=N_TEST, pool_size=POOL_SIZE, plot=True):
+def scores_distribution(score_id, df, ref, n_test=N_TEST, pool_size=POOL_SIZE, plot=True):
     """
     Plot the distribution of scores according to @score_function.
     Extract @n_test pools of @pool_size movies and assess the corresponding score.
@@ -301,7 +301,7 @@ def scores_distribution(score_id, ref, n_test=N_TEST, pool_size=POOL_SIZE, plot=
     for i in range(n_test):
         if (i%10000==0 and i!=0):
             print("n_test = "+i)
-        P = random_movie_pool(film_pool_size=pool_size)
+        P = random_movie_pool(pool_size, df)
         dic = score_function(P)
         for key in dic:
             if key not in scores_list:
@@ -331,7 +331,7 @@ def scores_distribution(score_id, ref, n_test=N_TEST, pool_size=POOL_SIZE, plot=
 ###########################################################
 
 
-def improvement(initial_movies_id, old_score):
+def improvement(df, initial_movies_id, old_score):
     """
     This function takes the pool with @initial_movies, with a score of @old_score,
     screen for each movie in our dataset and find the movie that increase at most the score.
@@ -345,12 +345,12 @@ def improvement(initial_movies_id, old_score):
     best_movies_id = initial_movies_id
     diff_max = -100
     movie_count=0
-    for movie_id in noNaN_characterDF['Wikipedia movie ID'].unique():
+    for movie_id in df['Wikipedia movie ID'].unique():
         if movie_id not in best_movies_id:
             movie_count+=1
             new_movies_id = initial_movies_id+[movie_id]
-            actors_pool = defined_movie_pool(new_movies_id)
-            new_score = representativeness_score(actors_pool)['tot']
+            actors_pool = defined_movie_pool(new_movies_id, df)
+            new_score = representativeness_score(actors_pool, ref)['tot']
             diff= new_score-old_score
             if diff>diff_max:
                 best_movies_id = new_movies_id
@@ -361,7 +361,7 @@ def improvement(initial_movies_id, old_score):
     return best_movies_id,
 
 
-def best_pool(initial_size=10, final_size=20):
+def best_pool(df, ref, initial_size=10, final_size=20):
     """
     Improving a random very good pool of @initial_size movies by applying the function 'improvement'
     until the number of movies in the pool is @final_size.
@@ -369,7 +369,7 @@ def best_pool(initial_size=10, final_size=20):
 
     #Getting scores for pools of initial_size movies
     n_test=1000
-    scores = scores_distribution('tot', n_test=n_test, pool_size=initial_size,plot=False)
+    scores = scores_distribution('tot', df, ref, n_test=n_test, pool_size=initial_size,plot=False)
 
     # extracting the first pool with the maximal score
     max_score = max(scores['tot'])
@@ -379,7 +379,7 @@ def best_pool(initial_size=10, final_size=20):
     print(f'The maximal score is {max_score}, corresponding to the following pool : {initial_movies_id}.')
     
     for i in range(final_size-initial_size):
-        initial_movies_id, max_score=improvement(initial_movies_id, max_score)
+        initial_movies_id, max_score=improvement(df, initial_movies_id, max_score)
         print(f"Improvement {i+1} : adding movie {initial_movies_id[-1]} gives a new score of {max_score}.")
     return initial_movies_id
 
