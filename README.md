@@ -40,7 +40,7 @@ We also use additional data about the US population, as regards distributions of
 * statsmodel
 * sklearn
 
-![Methods to analyze the data](./pipeline.png)
+![Methods to analyze the data](./IMAGES/png/pipeline.png)
 
 * For task 1 (**robot portrait**):
 We mostly analyze the means of features (if continuous, like height) or the most represented ones (if categorical, like occupations). This also serves as an exploration of the dataset, and to find what kind of movies humans like. We performed some t-tests to reject hypotheses, pair matching to reduce the influence of cofactors, and linear regression to demonstrate correlations (not causations).
