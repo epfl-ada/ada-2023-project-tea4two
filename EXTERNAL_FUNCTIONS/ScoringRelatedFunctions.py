@@ -330,7 +330,7 @@ def scores_distribution(score_id, df, ref, n_test=N_TEST, pool_size=POOL_SIZE, p
 ###########################################################
 
 
-def improvement(df, initial_movies_id, old_score):
+def improvement(df, ref, initial_movies_id, old_score):
     """
     This function takes the pool with @initial_movies, with a score of @old_score,
     screen for each movie in our dataset and find the movie that increase at most the score.
